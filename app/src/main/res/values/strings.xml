@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Location</string>
+
+    <string name="title_NetworkType">Network Type</string>
+    <string name="title_Longitude">Longitude</string>
+    <string name="title_Latitude">Latitude</string>
+    <string name="title_Level">Level</string>
+    <string name="title_Dbm">Dbm</string>
+    <string name="title_Rsrq">Rsrq</string>
+    <string name="title_Rsrp">Rsrp</string>
+    <string name="title_Rssi">Rssi</string>
+    <string name="title_Rssnr">Rssnr</string>
+
+    <string name="value_NetworkType">---</string>
+    <string name="value_Longitude">---</string>
+    <string name="value_Latitude">---</string>
+    <string name="value_Level">---</string>
+    <string name="value_Dbm">---</string>
+    <string name="value_Rsrq">---</string>
+    <string name="value_Rsrp">---</string>
+    <string name="value_Rssi">---</string>
+    <string name="value_Rssnr">---</string>
+
+    <string name="title_4G">Network 4G</string>
+    <string name="title_5G">Network 5G</string>
+
+    <string name="title_StartData">Start</string>
+    <string name="title_StopData">Stop</string>
+</resources>
