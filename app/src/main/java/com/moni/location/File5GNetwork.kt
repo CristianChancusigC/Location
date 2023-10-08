@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.telephony.CellIdentityNr
 import android.telephony.CellInfoNr
+import android.telephony.NetworkScanRequest
 import android.telephony.TelephonyManager
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
@@ -23,6 +24,17 @@ class File5GNetwork(private val context: Context) {
     private var nrarfcn = 0
     private var pci = 0
     private var tac = 0
+    private var state = 0
+    private var cdmaNetworkId = 0
+    private var cdmaSystemId = 0
+    private var cellBandwidths = intArrayOf()
+    private var channelNumber = 0
+    private var duplexMode = 0
+    private var isManualSelection = false
+    private var isSearching = false
+    private var roaming = false
+    private var operatorAlphaLong = ""
+    private var operatorNumeric = ""
 
     @RequiresApi(Build.VERSION_CODES.R)
     fun checkData5GNetwork(context: Context, activity: Activity) {
@@ -50,6 +62,7 @@ class File5GNetwork(private val context: Context) {
                 if (cellInfo is CellInfoNr) {
                     val cellSignalStrengthNr = cellInfo.cellSignalStrength
                     val cellIdentityNr = cellInfo.cellIdentity as CellIdentityNr
+                    val serviceState = telephonyManager.serviceState
                     cellSignalStrengthNr.hashCode()
                     asuLevel = cellSignalStrengthNr.asuLevel
                     signalLevel = cellSignalStrengthNr.level
@@ -59,19 +72,43 @@ class File5GNetwork(private val context: Context) {
                     nrarfcn = cellIdentityNr.nrarfcn
                     pci = cellIdentityNr.pci
                     tac = cellIdentityNr.tac
+                    if (serviceState != null) {
+                        state = serviceState.state
+                        cdmaNetworkId = serviceState.cdmaNetworkId
+                        cdmaSystemId = serviceState.cdmaSystemId
+                        cellBandwidths = serviceState.cellBandwidths
+                        channelNumber = serviceState.channelNumber
+                        duplexMode = serviceState.duplexMode
+                        isManualSelection = serviceState.isManualSelection
+                        isSearching = serviceState.isSearching
+                        roaming = serviceState.roaming
+                        operatorAlphaLong = serviceState.operatorAlphaLong
+                        operatorNumeric = serviceState.operatorNumeric
+                    };
                 }
             }
         }
     }
 
     fun getAllData5GNetwork(): String {
-        return ", Level: " + signalLevel.toString() +
-                ", AsuLevel: " + asuLevel.toString() +
-                ", Dbm: " + dbm.toString() +
-                ", nci: " + nci.toString() +
-                ", nrarfcn: " + nrarfcn.toString() +
-                ", pci: " + pci.toString() +
-                ", tac: " + tac.toString() +
+        return ", Level: $signalLevel" +
+                ", AsuLevel: $asuLevel" +
+                ", Dbm: $dbm" +
+                ", nci: $nci" +
+                ", nrarfcn: $nrarfcn" +
+                ", pci: $pci" +
+                ", tac: $tac" +
+                ", state: $state" +
+                ", cdmaNetworkId: $cdmaNetworkId" +
+                ", cdmaSystemId: $cdmaSystemId" +
+                ", cellBandwidths: $cellBandwidths[0]" +
+                ", channelNumber: $channelNumber" +
+                ", duplexMode: $duplexMode" +
+                ", isManualSelection: $isManualSelection" +
+                ", isSearching: $isSearching" +
+                ", roaming: $roaming" +
+                ", operatorAlphaLong: $operatorAlphaLong" +
+                ", operatorNumeric: $operatorNumeric" +
                 " "
     }
 }

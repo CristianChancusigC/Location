@@ -12,7 +12,7 @@ import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 
-class File4GNetwork (private val context: Context){
+class File4GNetwork(private val context: Context) {
     private val telephonyManager =
         context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
 
@@ -126,18 +126,18 @@ class File4GNetwork (private val context: Context){
     }
 
     fun getAllData4GNetwork(): String {
-        return ", Level: " + signalLevel.toString() +
-                ", Dbm: " + dbm.toString() +
-                ", Rsrp: " + rsrp.toString() +
-                ", Rsrq: " + rsrq.toString() +
-                ", Rssi: " + rssi.toString() +
-                ", Rssnr: " + rssrn.toString() +
-                ", asuLevel: " + asuLevel.toString() +
-                ", hashCode: " + hashCode.toString() +
-                ", cqi: " + cqi.toString() +
-                ", timingAdvance: " + timingAdvance.toString() +
-                ", bandwidth: " + bandwidth.toString() +
-                ", mobileNetworkOperator: " + mobileNetworkOperator +
+        return ", Level: $signalLevel" +
+                ", Dbm: $dbm" +
+                ", Rsrp: $rsrp" +
+                ", Rsrq: $rsrq" +
+                ", Rssi: $rssi" +
+                ", Rssnr: $rssrn" +
+                ", asuLevel: $asuLevel" +
+                ", hashCode: $hashCode" +
+                ", cqi: $cqi" +
+                ", timingAdvance: $timingAdvance" +
+                ", bandwidth: $bandwidth" +
+                ", mobileNetworkOperator: $mobileNetworkOperator" +
                 " "
     }
 
