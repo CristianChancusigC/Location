@@ -22,6 +22,7 @@ import java.util.Timer
 import java.util.TimerTask
 
 class MainActivity : AppCompatActivity() {
+    // Declaration of variables
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var binding: ActivityMainBinding
     private lateinit var fileHandler: FileHandler
@@ -192,7 +193,6 @@ class MainActivity : AppCompatActivity() {
                 fusedLocationProviderClient.lastLocation.addOnCompleteListener(this) { task ->
                     val location: Location? = task.result
                     if (location == null) {
-//                        messageToast("Null Data")
                         returnInitialStateButtons("Null Data")
                     } else {
                         accuracy = location.accuracy

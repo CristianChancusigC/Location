@@ -100,13 +100,16 @@ class File4GNetwork(private val context: Context) {
                 PERMISSION_REQUEST_CODE
             )
         } else {
+            // Get all Cell info
             val cellInfoList: List<CellInfo> = telephonyManager.allCellInfo
             for (cellInfo in cellInfoList) {
                 if (cellInfo is CellInfoLte) {
+                    // Telephone methods
                     val cellSignalStrengthLte = cellInfo.cellSignalStrength
                     val cellIdentityLte = cellInfo.cellIdentity
                     println("------------------")
                     println(cellSignalStrengthLte)
+                    // Get Data values of Telephone methods
                     describeCont = cellSignalStrengthLte.describeContents()
                     rssi = cellSignalStrengthLte.rssi
                     dbm = cellSignalStrengthLte.dbm
@@ -125,6 +128,7 @@ class File4GNetwork(private val context: Context) {
         }
     }
 
+    // Data for file
     fun getAllData4GNetwork(): String {
         return ", Level: $signalLevel" +
                 ", Dbm: $dbm" +

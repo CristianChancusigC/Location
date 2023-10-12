@@ -57,9 +57,11 @@ class File5GNetwork(private val context: Context) {
                 PERMISSION_REQUEST_CODE
             )
         } else {
+            // Get all Cell info
             val cellInfoList = telephonyManager.allCellInfo
             for (cellInfo in cellInfoList) {
                 if (cellInfo is CellInfoNr) {
+                    // Telephone methods
                     val cellSignalStrengthNr = cellInfo.cellSignalStrength
                     val cellIdentityNr = cellInfo.cellIdentity as CellIdentityNr
                     val serviceState = telephonyManager.serviceState
@@ -73,6 +75,7 @@ class File5GNetwork(private val context: Context) {
                     pci = cellIdentityNr.pci
                     tac = cellIdentityNr.tac
                     if (serviceState != null) {
+                        // Get Data values of Telephone methods
                         state = serviceState.state
                         cdmaNetworkId = serviceState.cdmaNetworkId
                         cdmaSystemId = serviceState.cdmaSystemId
@@ -90,6 +93,7 @@ class File5GNetwork(private val context: Context) {
         }
     }
 
+    // Data for file
     fun getAllData5GNetwork(): String {
         return ", Level: $signalLevel" +
                 ", AsuLevel: $asuLevel" +
