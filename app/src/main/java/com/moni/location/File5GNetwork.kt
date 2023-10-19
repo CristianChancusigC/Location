@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.telephony.CellIdentityNr
 import android.telephony.CellInfoNr
+import android.telephony.CellSignalStrengthNr
 import android.telephony.NetworkScanRequest
 import android.telephony.TelephonyManager
 import androidx.annotation.RequiresApi
@@ -25,6 +26,8 @@ class File5GNetwork(private val context: Context) {
     private var pci = 0
     private var tac = 0
     private var state = 0
+    private var csiRsrp = 0
+    private var ssRsrp = 0
     private var cdmaNetworkId = 0
     private var cdmaSystemId = 0
     private var cellBandwidths = intArrayOf()
@@ -62,10 +65,12 @@ class File5GNetwork(private val context: Context) {
             for (cellInfo in cellInfoList) {
                 if (cellInfo is CellInfoNr) {
                     // Telephone methods
-                    val cellSignalStrengthNr = cellInfo.cellSignalStrength
+                    val cellSignalStrengthNr = cellInfo.cellSignalStrength as CellSignalStrengthNr
                     val cellIdentityNr = cellInfo.cellIdentity as CellIdentityNr
                     val serviceState = telephonyManager.serviceState
                     cellSignalStrengthNr.hashCode()
+                    csiRsrp = cellSignalStrengthNr.csiRsrp
+                    ssRsrp = cellSignalStrengthNr.ssRsrp
                     asuLevel = cellSignalStrengthNr.asuLevel
                     signalLevel = cellSignalStrengthNr.level
                     dbm = cellSignalStrengthNr.dbm
@@ -103,6 +108,8 @@ class File5GNetwork(private val context: Context) {
                 ", pci: $pci" +
                 ", tac: $tac" +
                 ", state: $state" +
+                ", csiRsrp: $csiRsrp" +
+                ", ssRsrp: $csiRsrp" +
                 ", cdmaNetworkId: $cdmaNetworkId" +
                 ", cdmaSystemId: $cdmaSystemId" +
                 ", cellBandwidths: $cellBandwidths[0]" +
